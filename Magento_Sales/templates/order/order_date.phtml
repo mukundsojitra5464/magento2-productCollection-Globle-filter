@@ -1,0 +1,123 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+$status = $block->getOrder()->getStatus();
+//pending
+//order_confirmed
+
+switch($status){
+    case "pending":
+        $one_color_cls = "success-color";
+        $two_color_cls = "no-color";
+        $three_color_cls = "no-color";
+        $four_color_cls = "no-color";
+
+        break;
+    case "order_confirmed":
+        $one_color_cls = "success-color";
+        $two_color_cls = "success-color";
+        $three_color_cls = "success-color";
+        $four_color_cls = "no-color";
+        break;        
+
+    default:
+        $one_color_cls = "success-color";
+        $two_color_cls = "success-color";
+        $three_color_cls = "success-color";
+        $four_color_cls = "success-color";
+        break;     
+}
+
+?>
+
+<div class="order-date">
+    <?= /* @escapeNotVerified */ __('<span class="label">Order Date:</span> %1', '<date>' . $block->formatDate($block->getOrder()->getCreatedAt(), \IntlDateFormatter::LONG) . '</date>') ?>
+</div>
+
+
+
+
+<div class="row" style="width:100%; border:black 1px solid; height:100px;padding:6%"><br />
+
+
+		<div class="col-md-12">
+    	    <div class="status">
+             </div> 
+            <div class="progress">
+                <div class="one success-color">
+                    <i class="fa fa-home"></i>
+                </div>
+
+                <div class="two success-color">
+                    <i class="fa fa-plane"></i>
+                </div>
+
+                <div class="three success-color">
+                    <i class="fa fa-truck"></i>
+                </div>
+                
+                <div class="four no-color">
+                    <i class="fa fa-check-circle"></i>
+                </div>
+                <div class="progress-bar progress-bar-success" style="width: 67%;"></div>
+            </div>
+       
+	    </div>
+</div>
+
+<br><br>
+
+<style>
+.one, .two, .three, .four {
+    position:absolute;
+	margin-top:-15px;
+	z-index:1;
+	height:40px;
+	width:40px;
+	border-radius:25px;
+	
+}
+.one, .two, .three, .four, i {
+    text-align:center;
+    font-size: 24px;
+    color: white;
+    vertical-align: sub;
+}
+.one{
+	left:1%;
+}
+.two{
+	left:33%;
+}
+.three{
+	left:66%;
+}
+.four{
+	left:97%;
+}
+.primary-color{
+	background-color:#4989bd;
+}
+.success-color{
+	background-color:#5cb85c;
+}
+.danger-color{
+	background-color:#d9534f;
+}
+.warning-color{
+	background-color:#f0ad4e;
+}
+.info-color{
+	background-color:#5bc0de;
+}
+.no-color{
+	background-color:inherit;
+}
+.no-color i{
+color: grey;
+}
+</style>
